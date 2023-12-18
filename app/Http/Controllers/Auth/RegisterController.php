@@ -117,7 +117,8 @@ class RegisterController extends Controller
      */
     public function getVerification(Request $request, $token)
     {
-        if (! $this->validateRequest($request)) {
+        // HACK remove `!`
+        if ( $this->validateRequest($request)) {
             return redirect($this->redirectIfVerificationFails());
         }
 
@@ -166,8 +167,9 @@ class RegisterController extends Controller
     {
         $user = User::where('email', $request->email)->first();
 
-        if ($user->verified === 0) {
+        // if (!$user) {die();}
 
+        if ($user->verified === 0) {
             UserVerification::generate($user);
             UserVerification::send($user, 'Welcome to Logit!');
 

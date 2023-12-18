@@ -31,7 +31,6 @@
 	</div>
 	<!--             Core JS             -->
 	<script src="{{ mix('/js/logit.min.js') }}"></script>
-	<script src="{{ mix('/js/material-dashboard.min.js') }}"></script>
 	
 	@section('script')
 	@endsection

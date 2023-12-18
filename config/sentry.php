@@ -10,5 +10,7 @@ return array(
     'breadcrumbs.sql_bindings' => true,
 
     // Capture default user context
-    'user_context' => true,
+    // HACK: Commented out after upgrade
+    // 'user_context' => true,
+    // This was deprecated I guess? 
 );
