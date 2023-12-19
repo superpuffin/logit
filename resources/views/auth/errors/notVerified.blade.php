@@ -10,7 +10,7 @@
 				<div class="container">
 				    <div class="row">
 				        <div class="col-md-6 col-md-offset-3 text-center">
-				            <h2 class="title">Whops!</h2>
+				            <h2 class="title">Whoops!</h2>
 		            		<h5 class="description">You account has not been activated yet. If you haven't recieved any email from us, type in you email and click send to try again.</h5>
 
 		            		<form role="form" action="/register/resend" method="post">
