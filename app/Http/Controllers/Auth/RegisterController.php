@@ -78,6 +78,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            # YB: switch to Hash Facade
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -93,6 +94,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         $user = $this->create($request->all());
+        $user->settings()->create();
 
         event(new Registered($user));
 
@@ -109,42 +111,42 @@ class RegisterController extends Controller
                    ?: redirect($this->redirectPath())->with($userData);
     }
 
-    /**
-     * Handle the user verification. (overrides VerifiesUsers@getVerification)
-     *
-     * @param  string  $token
-     * @return \Illuminate\Http\Response
-     */
-    public function getVerification(Request $request, $token)
-    {
-        // HACK remove `!`
-        if ( $this->validateRequest($request)) {
-            return redirect($this->redirectIfVerificationFails());
-        }
+    // /**
+    //  * Handle the user verification. (overrides VerifiesUsers@getVerification)
+    //  *
+    //  * @param  string  $token
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function getVerification(Request $request, $token)
+    // {
+    //     // HACK remove `!`
+    //     if (! $this->validateRequest($request)) {
+    //         return redirect($this->redirectIfVerificationFails());
+    //     }
 
-        try {
-            $user = UserVerification::process($request->input('email'), $token, $this->userTable());
-        } catch (UserNotFoundException $e) {
-            return redirect($this->redirectIfVerificationFails());
-        } catch (UserIsVerifiedException $e) {
-            return redirect($this->redirectIfVerified());
-        } catch (TokenMismatchException $e) {
-            return redirect($this->redirectIfVerificationFails());
-        }
+    //     try {
+    //         $user = UserVerification::process($request->input('email'), $token, $this->userTable());
+    //     } catch (UserNotFoundException $e) {
+    //         return redirect($this->redirectIfVerificationFails());
+    //     } catch (UserIsVerifiedException $e) {
+    //         return redirect($this->redirectIfVerified());
+    //     } catch (TokenMismatchException $e) {
+    //         return redirect($this->redirectIfVerificationFails());
+    //     }
 
-        if (config('user-verification.auto-login') === true) {
-            auth()->loginUsingId($user->id);
-        }
+    //     if (config('user-verification.auto-login') === true) {
+    //         auth()->loginUsingId($user->id);
+    //     }
 
-        if (Auth::id()) {
-            return redirect('dashboard')
-                ->with('script_success', 'Your account is now verified. Welcome to Logit!');
-        } else {
-            return redirect($this->redirectAfterVerification())
-                ->with('script_success', 'Your account is now verified. Feel free to log in!')
-                ->with('email', $request->input('email'));
-        }
-    }
+    //     if (Auth::id()) {
+    //         return redirect('dashboard')
+    //             ->with('script_success', 'Your account is now verified. Welcome to Logit!');
+    //     } else {
+    //         return redirect($this->redirectAfterVerification())
+    //             ->with('script_success', 'Your account is now verified. Feel free to log in!')
+    //             ->with('email', $request->input('email'));
+    //     }
+    // }
 
     /**
      * Displays the users newly registert Email with a custom message.

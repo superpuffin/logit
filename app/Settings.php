@@ -3,6 +3,7 @@
 namespace Logit;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Settings extends Model
 {
@@ -27,4 +28,8 @@ class Settings extends Model
         'timer_seconds',
         'timer_minutes',
     ];
+
+    public function user() : BelongsTo {
+        return $this->belongsTo('Logit\User');
+    }
 }

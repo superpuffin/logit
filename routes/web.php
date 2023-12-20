@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,9 +34,12 @@ Route::prefix('auth/{provider}')->group(function() {
 });
 
 Route::get('/register/success', 'Auth\RegisterController@checkEmail');
+# YB:CHECK
 Route::post('/register/resend', 'Auth\RegisterController@resend');
-Route::get('/email-verification/error', 'Auth\RegisterController@getVerificationError')->name('email-verification.error');
-Route::get('/email-verification/check/{token}', 'Auth\RegisterController@getVerification')->name('email-verification.check');
+# YB: CHECK
+// Route::get('/email-verification/error', 'Auth\RegisterController@getVerificationError')->name('email-verification.error');
+# YB: CHECK
+// Route::get('/email-verification/check/{token}', 'Auth\RegisterController@getVerification')->name('email-verification.check');
 
 Route::group(['middleware' => ['isVerified']], function () {
 	/* Dashboard */
