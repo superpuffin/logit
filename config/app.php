@@ -166,7 +166,7 @@ return [
         /*
          * 3rd Party Providers
          */
-        Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
+        Sentry\Laravel\ServiceProvider::class,
         Jrean\UserVerification\UserVerificationServiceProvider::class,
 
         /*
@@ -232,7 +232,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
+        'Sentry' => Sentry\Laravel\Facade::class,
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
         
     ],

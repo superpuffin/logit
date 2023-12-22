@@ -1,6 +1,6 @@
 .page-header{
     height: 100%;
-    min-height: -webkit-fill-available;
+    min-height: stretch;
     background-position: center center;
     background-size: cover;
     margin: 0;
@@ -51,7 +51,7 @@
         content: "";
     }
 
-    &::before,{
+    &::before{
     background: rgba(0,0,0,.5);
     }
 

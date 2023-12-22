@@ -5,18 +5,22 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^8.0",
-        "guzzlehttp/guzzle": "^7.0.1",
-        "jrean/laravel-user-verification": "dev-master",
-        "laravel/framework": "^9",
-        "laravel/socialite": "^5.0",
-        "laravel/tinker": "^2.5"
+        "php": "^8.1.0",
+        "guzzlehttp/guzzle": "^7.8.1",
+        "jrean/laravel-user-verification": "^11.0",
+        "laravel/framework": "^10.38.1",
+        "laravel/homestead": "^14.5",
+        "laravel/socialite": "^5.11",
+        "laravel/tinker": "^2.8.2",
+        "laravel/ui": "^4.3",
+        "phpunit/phpunit": "^10.5.3",
+        "sentry/sentry": "^4.2",
+        "sentry/sentry-laravel": "^4.1.1"
     },
     "require-dev": {
-        "filp/whoops": "~2.0",
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "^9.5.10"
+        "fakerphp/faker": "^1.23",
+        "mockery/mockery": "^1.6.7",
+        "spatie/laravel-ignition": "^2.3.2"
     },
     "autoload": {
         "classmap": [
@@ -47,6 +51,9 @@
     },
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }
